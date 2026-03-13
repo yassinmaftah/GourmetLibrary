@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\BorrowController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -17,6 +19,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
 
     // Route::get('/books', [BookController::class, 'index']);
+
+    Route::post('/books/{id}/borrow', [BorrowController::class, 'store']);
+    Route::post('/books/{id}/return', [BorrowController::class, 'returnBook']);
     });
 
 Route::get('/books', [BookController::class, 'index']);
