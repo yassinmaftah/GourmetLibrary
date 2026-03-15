@@ -88,4 +88,16 @@ class BorrowController extends Controller
             'history' => $myHistory
         ], 200);
     }
+    public function index()
+    {
+        $allBorrowings = Borrow::with(['book', 'user'])
+                               ->orderBy('borrowed_at', 'desc')
+                               ->get();
+
+        return response()->json([
+            'message' => 'Admin Master List: All Borrowed Books',
+            'total_records' => $allBorrowings->count(),
+            'borrowings' => $allBorrowings
+        ], 200);
+    }
 }

@@ -32,5 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/books/{book}', [BookController::class, 'update']);
         Route::delete('/books/{book}', [BookController::class, 'destroy']);
 
+        Route::get('/admin/borrowings', [BorrowController::class, 'index']);
+
     });
 });
