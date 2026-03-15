@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/books/{id}/borrow', [BorrowController::class, 'store']);
     Route::post('/books/{id}/return', [BorrowController::class, 'returnBook']);
-    });
+    Route::get('/my-books', [BorrowController::class, 'myBooks']);
+});
 
 Route::get('/books', [BookController::class, 'index']);
 Route::delete('/books/{book}', [BookController::class, 'destroy']);

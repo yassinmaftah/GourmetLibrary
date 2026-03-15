@@ -72,4 +72,20 @@ class BorrowController extends Controller
             'borrowing' => $borrowing
         ], 200);
     }
+
+    public function myBooks(Request $request)
+    {
+        $user_id = $request->user()->id;
+
+        $myHistory = Borrow::with('book')
+                           ->where('user_id', $user_id)
+                           ->orderBy('borrowed_at', 'desc')
+                           ->get();
+
+        return response()->json([
+            'message' => 'Here is your complete reading history.',
+            'total_books' => $myHistory->count(),
+            'history' => $myHistory
+        ], 200);
+    }
 }

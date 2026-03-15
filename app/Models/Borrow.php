@@ -27,4 +27,8 @@ class Borrow extends Model
     {
         return $this->belongsTo(BookCopy::class);
     }
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
 }
